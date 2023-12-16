@@ -48,11 +48,11 @@ pub fn read_file(file_path: &Path) -> io::Result<Vec<CharacterAppearance>> {
     Ok(appearances)
 }
 
-
+//tests
 #[cfg(test)]
 mod tests {
     use super::*;
-
+    //testing uppercase
     #[test]
     fn test_ensure_uppercase_connections() {
         let mut connections = vec![
