@@ -48,6 +48,28 @@ pub fn read_file(file_path: &Path) -> io::Result<Vec<CharacterAppearance>> {
     Ok(appearances)
 }
 
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_ensure_uppercase_connections() {
+        let mut connections = vec![
+            CharacterConnection { character_a: "iron man".to_string(), character_b: "thor".to_string() },
+            CharacterConnection { character_a: "Black Widow".to_string(), character_b: "HAWKEYE".to_string() },
+        ];
+
+        ensure_uppercase_connections(&mut connections);
+
+        for connection in connections.iter() {
+            assert_eq!(connection.character_a, connection.character_a.to_uppercase());
+            assert_eq!(connection.character_b, connection.character_b.to_uppercase());
+        }
+    }
+
+}
+
     // graph from the list of character appearances
 pub fn build_graph(appearances: &[CharacterAppearance]) -> Graph {
     let mut graph = Graph::new();
